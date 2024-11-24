@@ -25,7 +25,7 @@ export async function NewestPost() {
   );
 
   return (
-    <Section className="bg-muted/25 py-16">
+    <Section className=" py-16">
       <Container>
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight mb-4">

@@ -17,6 +17,13 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 interface Position {
   id: string;
@@ -54,6 +61,9 @@ const PositionCard = ({
   isActive: boolean;
   onClick: () => void;
 }) => {
+  const [showDialog, setShowDialog] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   const holders = dataPengurus.filter(
     (p) => p.Jabatan.toLowerCase() === position.title.toLowerCase()
   );
@@ -75,75 +85,108 @@ const PositionCard = ({
           .slice(0, 5)
       : [];
 
+  const handleCardClick = () => {
+    if (isMobile && position.title !== "Anggota") {
+      setShowDialog(true);
+    }
+    onClick();
+  };
+
   return (
-    <HoverCard>
-      <HoverCardTrigger>
-        <Card
-          className={`cursor-pointer transition-all ${
-            isActive
-              ? "border-primary bg-primary/10 transform scale-105"
-              : "hover:border-primary/50 hover:bg-primary/5"
-          }`}
-          onClick={onClick}
-        >
-          <CardHeader className="p-4">
-            <CardTitle className="text-sm text-center">
-              {position.title}
-            </CardTitle>
-          </CardHeader>
-          {(holders.length > 0 || anggotaHolders.length > 0) && (
-            <CardContent className="p-4 pt-0">
-              <div className="flex flex-wrap justify-center gap-2">
-                {position.title === "Anggota"
-                  ? anggotaHolders.map((holder, idx) => (
-                      <Avatar key={idx} className="w-8 h-8">
-                        <AvatarImage src={holder["Foto Profil"]} />
-                        <AvatarFallback>
-                          {holder["Nama Anggota"].substring(0, 2)}
-                        </AvatarFallback>
-                      </Avatar>
-                    ))
-                  : holders.map((holder, idx) => (
-                      <Avatar key={idx} className="w-8 h-8">
-                        <AvatarImage src={holder.Rollup} />
-                        <AvatarFallback>
-                          {holder.Person.substring(1, 3)}
-                        </AvatarFallback>
-                      </Avatar>
-                    ))}
-                {position.title === "Anggota" && (
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-medium">
-                    +{dataAnggota.length - 5}
-                  </div>
-                )}
+    <>
+      <HoverCard>
+        <HoverCardTrigger>
+          <Card
+            className={`cursor-pointer transition-all ${
+              isActive
+                ? "border-primary bg-primary/10 transform scale-105"
+                : "hover:border-primary/50 hover:bg-primary/5"
+            }`}
+            onClick={handleCardClick}
+          >
+            <CardHeader className="p-4">
+              <CardTitle className="text-sm text-center">
+                {position.title}
+              </CardTitle>
+            </CardHeader>
+            {(holders.length > 0 || anggotaHolders.length > 0) && (
+              <CardContent className="p-4 pt-0">
+                <div className="flex flex-wrap justify-center gap-2">
+                  {position.title === "Anggota"
+                    ? anggotaHolders.map((holder, idx) => (
+                        <Avatar key={idx} className="w-8 h-8">
+                          <AvatarImage src={holder["Foto Profil"]} />
+                          <AvatarFallback>
+                            {holder["Nama Anggota"].substring(0, 2)}
+                          </AvatarFallback>
+                        </Avatar>
+                      ))
+                    : holders.map((holder, idx) => (
+                        <Avatar key={idx} className="w-8 h-8">
+                          <AvatarImage src={holder.Rollup} />
+                          <AvatarFallback>
+                            {holder.Person.substring(1, 3)}
+                          </AvatarFallback>
+                        </Avatar>
+                      ))}
+                  {position.title === "Anggota" && (
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-medium">
+                      +{dataAnggota.length - 5}
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            )}
+          </Card>
+        </HoverCardTrigger>
+        {!isMobile && position.title !== "Anggota" && (
+          <HoverCardContent>
+            {holders.map((holder, idx) => (
+              <div key={idx} className="flex items-center gap-4 py-2">
+                <Avatar>
+                  <AvatarImage src={holder.Rollup} />
+                  <AvatarFallback>{holder.Person.substring(1, 3)}</AvatarFallback>
+                </Avatar>
+                <div>
+                  <p className="text-sm font-medium">
+                    {holder.Person.substring(1)}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    {holder["Sub Jabatan"]}
+                  </p>
+                </div>
               </div>
-            </CardContent>
-          )}
-        </Card>
-      </HoverCardTrigger>
-      {position.title !== "Anggota" && (
-        <HoverCardContent>
-          {holders.map((holder, idx) => (
-            <div key={idx} className="flex items-center gap-4 py-2 ">
-              {" "}
-              {/* Tambahkan margin-bottom */}
-              <Avatar>
-                <AvatarImage src={holder.Rollup} />
-                <AvatarFallback>{holder.Person.substring(1, 3)}</AvatarFallback>
-              </Avatar>
-              <div>
-                <p className="text-sm font-medium">
-                  {holder.Person.substring(1)}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {holder["Sub Jabatan"]}
-                </p>
+            ))}
+          </HoverCardContent>
+        )}
+      </HoverCard>
+
+      <Dialog open={showDialog && isMobile} onOpenChange={setShowDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{position.title}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            {holders.map((holder, idx) => (
+              <div key={idx} className="flex items-center gap-4">
+                <Avatar>
+                  <AvatarImage src={holder.Rollup} />
+                  <AvatarFallback>{holder.Person.substring(1, 3)}</AvatarFallback>
+                </Avatar>
+                <div>
+                  <p className="text-sm font-medium">
+                    {holder.Person.substring(1)}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    {holder["Sub Jabatan"]}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
-        </HoverCardContent>
-      )}
-    </HoverCard>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 
@@ -161,12 +204,12 @@ export const StrukturOrganisasi = () => {
   return (
     <Section>
       <Container>
-        <Card className="transition-all duration-300">
+        <Card className="transition-all duration-300 bg-transparent">
           <CardHeader>
             <CardTitle>Struktur Organisasi</CardTitle>
             <CardDescription>
-              Struktur organisasi UKM Pendidikan, Riset dan Teknologi
-              Universitas Terbuka
+              Struktur organisasi UKM Pendidikan, Riset dan Teknologi Universitas
+              Terbuka
             </CardDescription>
           </CardHeader>
           <CardContent>

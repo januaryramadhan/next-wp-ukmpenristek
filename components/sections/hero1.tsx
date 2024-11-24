@@ -2,25 +2,26 @@
 
 import { MoveRight, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export const Hero1 = () => {
   // Function to handle smooth scroll
   const scrollToVisiMisi = () => {
-    const visiMisiSection = document.getElementById('visi-misi');
+    const visiMisiSection = document.getElementById("visi-misi");
     if (visiMisiSection) {
-      visiMisiSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
+      visiMisiSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
       });
     }
   };
 
   const scrollToprogramKerja = () => {
-    const visiMisiSection = document.getElementById('program-kerja');
+    const visiMisiSection = document.getElementById("program-kerja");
     if (visiMisiSection) {
-      visiMisiSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
+      visiMisiSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
       });
     }
   };
@@ -30,9 +31,11 @@ export const Hero1 = () => {
       <div className="container mx-auto">
         <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
           <div>
-            <Button variant="secondary" size="sm" className="gap-2">
-              Bergabung dengan UKM PENRISTEK <MoveRight className="w-4 h-4" />
-            </Button>
+            <Link href="https://sl.ut.ac.id/penristekregist">
+              <Button variant="secondary" size="sm" className="gap-2">
+                Bergabung dengan UKM PENRISTEK <MoveRight className="w-4 h-4" />
+              </Button>
+            </Link>
           </div>
           <div className="flex gap-4 flex-col">
             <h1 className="text-3xl md:text-5xl max-w-2xl tracking-tighter text-center font-semibold">

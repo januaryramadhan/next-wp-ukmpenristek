@@ -6,7 +6,7 @@ import { BarChartInteractive } from "../charts/proker/barChartInteractive";
 import { Section, Container } from "@/components/commons/craft";
 
 export const Stats = () => (
-  <Section className="bg-muted/50 py-20">
+  <Section className=" py-20">
     <Container>
       <div className="mb-6">
         <h3 className="text-2xl md:text-3xl font-semibold text-center">

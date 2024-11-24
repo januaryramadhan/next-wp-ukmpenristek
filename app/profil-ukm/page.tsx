@@ -38,7 +38,7 @@ export default function ProfilUKMPage() {
       {/* Tentang Kami Section */}
       <Section className="py-16">
         <Container>
-          <Card>
+          <Card className="bg-transparent">
             <CardHeader>
               <h2 className="text-2xl font-bold">Tentang Kami</h2>
             </CardHeader>
@@ -68,7 +68,7 @@ export default function ProfilUKMPage() {
       </Section>
 
       {/* Visi Misi Section */}
-      <Section className="bg-muted/25 py-16">
+      <Section className="py-16">
         <Container>
           <VisiMisi />
         </Container>
@@ -77,15 +77,14 @@ export default function ProfilUKMPage() {
       {/* Struktur Organisasi Section */}
       <Section className="py-16">
         <Container>
-          <StrukturOrganisasi />
+          <StrukturOrganisasi />  
         </Container>
       </Section>
 
       {/* Data Pengurus & Anggota Section */}
       <Section className="py-16">
         <Container>
-          <Card>
-            
+          <Card className="bg-transparent">
             <CardContent className="mt-10">
               <Tabs defaultValue="pengurus" className="space-y-6">
                 <TabsList className="grid w-full grid-cols-2 lg:w-[400px]">

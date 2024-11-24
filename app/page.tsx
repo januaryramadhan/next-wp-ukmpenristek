@@ -9,16 +9,14 @@ import { NewestPost } from "@/components/sections/newest-post";
 
 export default async function Home() {
   return (
-    <Section>
-      <Container>
-        <Hero1 />
-        <NewestPost />
-        <VisiMisi />
-        <StrukturOrganisasi />
-        <ProgramKerjaScroll />
-        <Stats />
-        <FAQ />
-      </Container>
-    </Section>
+    <>
+      <Hero1 />
+      <NewestPost />
+      <VisiMisi />
+      <StrukturOrganisasi />
+      <ProgramKerjaScroll />
+      <Stats />
+      <FAQ />
+    </>
   );
 }
