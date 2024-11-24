@@ -14,12 +14,13 @@ const nextConfig = {
       "storage.tally.so",
       "prod-files-secure.s3.us-west-2.amazonaws.com",
       "s3.us-west-2.amazonaws.com",
-    ], // Domain untuk file Notion
+      "bisque-duck-758265.hostingersite.com",
+    ],
     unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
-        hostname: process.env.WORDPRESS_HOSTNAME,
+        hostname: process.env.WORDPRESS_HOSTNAME || "bisque-duck-758265.hostingersite.com", // Fallback value
         port: "",
         pathname: "/**",
       },
@@ -28,7 +29,6 @@ const nextConfig = {
 };
 
 const withMDX = createMDX({
-  // Add markdown plugins here, as desired
   options: {
     remarkPlugins: [],
     rehypePlugins: [],
