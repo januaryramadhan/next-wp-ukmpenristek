@@ -1,7 +1,6 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, XAxis } from "recharts";
 import { dataProker } from "@/data/dataProker";
 
 import {
@@ -21,132 +20,166 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-// Function to get month from date string
-const getMonth = (dateStr: string) => {
-  return new Date(dateStr.split("→")[0]).getMonth();
-};
+// Constants
+const PERIOD = [
+  { month: "Dec", year: 2024 },
+  { month: "Jan", year: 2025 },
+  { month: "Feb", year: 2025 },
+  { month: "Mar", year: 2025 },
+  { month: "Apr", year: 2025 },
+  { month: "May", year: 2025 },
+  { month: "Jun", year: 2025 },
+  { month: "Jul", year: 2025 },
+  { month: "Aug", year: 2025 },
+  { month: "Sep", year: 2025 },
+  { month: "Oct", year: 2025 }
+];
 
-// Process data to count events per month by platform
-const processData = () => {
-  const monthlyData = Array(12)
-    .fill(null)
-    .map(() => ({
-      online: 0,
-      offline: 0,
-    }));
-
-  dataProker.forEach((proker) => {
-    const month = getMonth(proker.date);
-    if (proker.platform === "Online") {
-      monthlyData[month].online++;
-    } else {
-      monthlyData[month].offline++;
-    }
-  });
-
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
-  return months.map((month, index) => ({
-    month,
-    online: monthlyData[index].online,
-    offline: monthlyData[index].offline,
-  }));
-};
-
-const chartData = processData();
-
-const chartConfig = {
+const chartConfig: ChartConfig = {
   online: {
     label: "Online",
-    color: "hsl(var(--primary))",
+    color: "hsl(var(--chart-1))"
   },
   offline: {
     label: "Offline",
-    color: "hsl(var(--muted))",
-  },
-} satisfies ChartConfig;
+    color: "hsl(var(--chart-2))"
+  }
+};
+
+const processData = () => {
+  const monthlyData = PERIOD.map(period => ({
+    monthYear: `${period.month} ${period.year}`,
+    online: 0,
+    offline: 0,
+    total: 0
+  }));
+
+  dataProker.forEach((proker) => {
+    const date = new Date(proker.date.split("→")[0].trim());
+    const year = date.getFullYear();
+    const month = date.getMonth();
+
+    // Find matching period
+    const periodIndex = PERIOD.findIndex(p => {
+      if (year === 2024 && month === 11) return p.month === "Dec" && p.year === 2024;
+      if (year === 2025) {
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"];
+        return p.month === monthNames[month] && p.year === 2025;
+      }
+      return false;
+    });
+
+    if (periodIndex !== -1) {
+      if (proker.platform === "Online") {
+        monthlyData[periodIndex].online++;
+      } else {
+        monthlyData[periodIndex].offline++;
+      }
+      monthlyData[periodIndex].total++;
+    }
+  });
+
+  return monthlyData;
+};
 
 export function BarChartProkerJenis() {
-  // Calculate totals
+  const chartData = processData();
+  
   const totalOnline = chartData.reduce((sum, item) => sum + item.online, 0);
   const totalOffline = chartData.reduce((sum, item) => sum + item.offline, 0);
   const total = totalOnline + totalOffline;
 
+  const onlinePercentage = ((totalOnline / total) * 100).toFixed(1);
+  const offlinePercentage = ((totalOffline / total) * 100).toFixed(1);
+
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>Program Kerja by Month</CardTitle>
-        <CardDescription>2024 - 2025</CardDescription>
+      <CardHeader className="items-center">
+        <CardTitle>Program Kerja Per Bulan</CardTitle>
+        <CardDescription>Desember 2024 - Oktober 2025</CardDescription>
       </CardHeader>
-      <CardContent className="pl-2">
+      <CardContent className="">
         <ChartContainer config={chartConfig}>
-          <div>
-            {" "}
-            {/* Add this wrapper div */}
-            <BarChart
-              data={chartData}
-              margin={{ top: 20, right: 30, bottom: 0, left: 0 }}
-              height={300}
+          <ResponsiveContainer width="100%" height={350}>
+            <BarChart 
+              data={chartData} 
+              margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
             >
-              <CartesianGrid
+              <CartesianGrid 
                 strokeDasharray="4 4"
                 horizontal={true}
                 vertical={false}
                 stroke="hsl(var(--border))"
               />
               <XAxis
-                dataKey="month"
+                dataKey="monthYear"
                 tickLine={false}
                 axisLine={false}
-                tickFormatter={(value) => value.slice(0, 3)}
                 fontSize={12}
                 tickMargin={8}
               />
               <ChartTooltip
-                cursor={{ fill: "hsl(var(--muted))" }}
-                content={<ChartTooltipContent />}
+                cursor={{ fill: "hsl(var(--muted)/.1)" }}
+                content={({ active, payload }) => {
+                  if (!active || !payload) return null;
+                  return (
+                    <div className="rounded-lg border bg-background p-2 shadow-sm">
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="flex flex-col">
+                          <span className="text-[0.70rem] uppercase text-muted-foreground">
+                            {payload[0]?.payload.monthYear}
+                          </span>
+                          <span className="font-bold">
+                            Total: {payload[0]?.payload.total}
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex items-center gap-1">
+                            <div className="h-2 w-2 rounded-full bg-[hsl(var(--chart-1))]" />
+                            <span className="text-[0.70rem]">
+                              Online: {payload[0]?.payload.online}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <div className="h-2 w-2 rounded-full bg-[hsl(var(--chart-2))]" />
+                            <span className="text-[0.70rem]">
+                              Offline: {payload[0]?.payload.offline}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }}
               />
               <Bar
                 name="Online"
                 dataKey="online"
                 stackId="a"
-                fill="hsl(var(--primary))"
-                radius={[4, 4, 0, 0]}
+                fill={chartConfig.online.color}
+                radius={[0, 0, 0, 0]}
                 barSize={20}
               />
               <Bar
                 name="Offline"
                 dataKey="offline"
                 stackId="a"
-                fill="hsl(var(--muted))"
-                radius={[0, 0, 4, 4]}
+                fill={chartConfig.offline.color}
+                radius={[0, 0, 0, 0]}
                 barSize={20}
               />
             </BarChart>
-            <ChartLegend content={<ChartLegendContent />} />
-          </div>{" "}
-          {/* Close wrapper div */}
+          </ResponsiveContainer>
+          <ChartLegend content={<ChartLegendContent />} />
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex w-full justify-between font-medium">
           <span>Total Program Kerja: {total} kegiatan</span>
-          <span className="text-muted-foreground">
-            Online: {totalOnline} | Offline: {totalOffline}
-          </span>
+        </div>
+        <div className="flex w-full justify-between text-muted-foreground">
+          <span>Online: {totalOnline} ({onlinePercentage}%)</span>
+          <span>Offline: {totalOffline} ({offlinePercentage}%)</span>
         </div>
       </CardFooter>
     </Card>
