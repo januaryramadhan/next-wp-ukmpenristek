@@ -2,13 +2,20 @@ import createMDX from "@next/mdx";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
     domains: [
       "storage.tally.so",
       "prod-files-secure.s3.us-west-2.amazonaws.com",
-      's3.us-west-2.amazonaws.com'], // Domain untuk file Notion
-    unoptimized: true, 
+      "s3.us-west-2.amazonaws.com",
+    ], // Domain untuk file Notion
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

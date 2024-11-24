@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
-import { dataProker } from "@/data/dataProker"
+import * as React from "react";
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { dataProker } from "@/data/dataProker";
 
 import {
   Card,
@@ -10,71 +10,84 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
 
 // Process data to count monthly events by platform for specific period
 const processMonthlyData = () => {
   // Initialize array for months from Dec 2024 to Oct 2025
-  const monthlyData = Array(11).fill(null).map(() => ({
-    offline: 0,
-    online: 0
-  }))
+  const monthlyData = Array(11)
+    .fill(null)
+    .map(() => ({
+      offline: 0,
+      online: 0,
+    }));
 
-  dataProker.forEach(proker => {
-    const date = new Date(proker.date.split('→')[0])
-    const year = date.getFullYear()
-    const month = date.getMonth()
+  dataProker.forEach((proker) => {
+    const date = new Date(proker.date.split("→")[0]);
+    const year = date.getFullYear();
+    const month = date.getMonth();
 
     // Only process data from Dec 2024 to Oct 2025
-    if ((year === 2024 && month === 11) || // December 2024
-        (year === 2025 && month <= 9)) {   // Jan to Oct 2025
-      const monthIndex = year === 2024 ? 0 : month + 1 // Adjust index for Dec 2024
+    if (
+      (year === 2024 && month === 11) || // December 2024
+      (year === 2025 && month <= 9)
+    ) {
+      // Jan to Oct 2025
+      const monthIndex = year === 2024 ? 0 : month + 1; // Adjust index for Dec 2024
       if (proker.platform === "Online") {
-        monthlyData[monthIndex].online++
+        monthlyData[monthIndex].online++;
       } else {
-        monthlyData[monthIndex].offline++
+        monthlyData[monthIndex].offline++;
       }
     }
-  })
+  });
 
   // Create dates array from Dec 2024 to Oct 2025
   const dates = [
     new Date(2024, 11, 1), // December 2024
-    ...Array(10).fill(null).map((_, i) => new Date(2025, i, 1)) // Jan to Oct 2025
-  ]
+    ...Array(10)
+      .fill(null)
+      .map((_, i) => new Date(2025, i, 1)), // Jan to Oct 2025
+  ];
 
   return dates.map((date, index) => ({
-    date: date.toISOString().split('T')[0],
+    date: date.toISOString().split("T")[0],
     offline: monthlyData[index].offline,
-    online: monthlyData[index].online
-  }))
+    online: monthlyData[index].online,
+  }));
+};
+
+const chartData = processMonthlyData();
+
+interface ChartConfigItem {
+  label: string;
+  color?: string;
 }
 
-const chartData = processMonthlyData()
-
-const chartConfig = {
+const chartConfig: Record<string, ChartConfigItem> = {
   views: {
     label: "Jumlah Program Kerja",
   },
   offline: {
     label: "Program Kerja Offline",
-    color: "hsl(var(--chart-1))", // Menggunakan warna dari variabel CSS chart-1
+    color: "hsl(var(--chart-1))",
   },
   online: {
     label: "Program Kerja Online",
-    color: "hsl(var(--chart-2))", // Menggunakan warna dari variabel CSS chart-2
+    color: "hsl(var(--chart-2))",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export function BarChartInteractive() {
-  const [activeChart, setActiveChart] = 
-    React.useState<keyof typeof chartConfig>("offline")
+  const [activeChart, setActiveChart] = React.useState<"offline" | "online">(
+    "offline"
+  );
 
   const total = React.useMemo(
     () => ({
@@ -82,7 +95,7 @@ export function BarChartInteractive() {
       online: chartData.reduce((acc, curr) => acc + curr.online, 0),
     }),
     []
-  )
+  );
 
   return (
     <Card>
@@ -95,7 +108,8 @@ export function BarChartInteractive() {
         </div>
         <div className="flex">
           {["offline", "online"].map((key) => {
-            const chart = key as keyof typeof chartConfig
+            // Explicitly type the chart constant as "offline" | "online"
+            const chart = key as "offline" | "online";
             return (
               <button
                 key={chart}
@@ -107,10 +121,10 @@ export function BarChartInteractive() {
                   {chartConfig[chart].label}
                 </span>
                 <span className="text-lg font-bold leading-none sm:text-3xl">
-                  {total[key as keyof typeof total]}
+                  {total[chart]}
                 </span>
               </button>
-            )
+            );
           })}
         </div>
       </CardHeader>
@@ -134,11 +148,11 @@ export function BarChartInteractive() {
               tickMargin={8}
               minTickGap={32}
               tickFormatter={(value) => {
-                const date = new Date(value)
+                const date = new Date(value);
                 return date.toLocaleDateString("en-US", {
                   month: "short",
-                  year: "2-digit"
-                })
+                  year: "2-digit",
+                });
               }}
             />
             <ChartTooltip
@@ -150,19 +164,19 @@ export function BarChartInteractive() {
                     return new Date(value).toLocaleDateString("en-US", {
                       month: "long",
                       year: "numeric",
-                    })
+                    });
                   }}
                 />
               }
             />
-            <Bar 
+            <Bar
               dataKey={activeChart}
-              fill={chartConfig[activeChart].color}
+              fill={chartConfig[activeChart].color || "hsl(var(--chart-1))"}
               radius={[4, 4, 0, 0]}
             />
           </BarChart>
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

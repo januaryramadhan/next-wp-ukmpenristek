@@ -5,7 +5,6 @@ export default function VisiMisi() {
     <Section>
       <Container>
         <div id="visi-misi" className="space-y-16">
-
           {/* Visi */}
           <div className="max-w-4xl mx-auto space-y-6">
             <div className="space-y-2">
@@ -17,13 +16,13 @@ export default function VisiMisi() {
             </div>
             <figure className="my-8">
               <blockquote className="relative border-l-4 border-primary pl-4 italic text-xl md:text-2xl text-muted-foreground">
-                <span className="text-4xl text-primary absolute -left-3 -top-4">"</span>
+                <span className="text-4xl text-primary absolute -left-3 -top-4">&ldquo;</span>
                 Menjadi Unit Kegiatan Mahasiswa terunggul se-Indonesia pada tahun 2045 yang menghasilkan mahasiswa berkarakter kritis, intelektual, berketerampilan sosial, berdaya saing global, agar dapat mengamalkan pendidikan dan penelitian untuk diabdikan pada masyarakat.
-                <span className="text-4xl text-primary absolute -right-3 bottom-0">"</span>
+                <span className="text-4xl text-primary absolute -right-3 bottom-0">&rdquo;</span>
               </blockquote>
             </figure>
           </div>
-
+          
           {/* Misi */}
           <div className="space-y-6">
             <div className="space-y-2">
