@@ -2,7 +2,7 @@
 
 import { TrendingUp } from "lucide-react"
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts"
-import { dataAnggota } from "@/data/dataAnggota"
+import { dataAnggota } from "@/lib/dataAnggota"
 
 import {
   Card,

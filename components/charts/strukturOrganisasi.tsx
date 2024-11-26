@@ -9,8 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { dataPengurus } from "@/data/dataPengurus";
-import { dataAnggota } from "@/data/dataAnggota";
+import { dataPengurus } from "@/lib/dataPengurus";
+import { dataAnggota } from "@/lib/dataAnggota";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   HoverCard,

@@ -17,7 +17,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { dataProker } from "@/data/dataProker";
+import { dataProker } from "@/lib/dataProker";
 
 // Count proker by platform
 const getPlatformCounts = () => {

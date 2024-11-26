@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { dataAnggota } from "@/data/dataAnggota";
+import { dataAnggota } from "@/lib/dataAnggota";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -166,6 +166,33 @@ export function DataAnggotaComponent() {
           </PaginationContent>
         </Pagination>
       )}
+    </div>
+  );
+}
+
+// Skeleton loading untuk data anggota
+export function AnggotaSkeleton() {
+  return (
+    <div className="space-y-8">
+      <div>
+        <Skeleton className="h-8 w-[200px] mb-2" />
+        <Skeleton className="h-4 w-[300px]" />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {[...Array(8)].map((_, i) => (
+          <div key={i} className="border rounded-md p-6">
+            <div className="flex flex-col items-center space-y-4">
+              <Skeleton className="h-20 w-20 rounded-full" />
+              <div className="space-y-2 text-center w-full">
+                <Skeleton className="h-4 w-[150px] mx-auto" />
+                <Skeleton className="h-4 w-[100px] mx-auto" />
+                <Skeleton className="h-4 w-[80px] mx-auto" />
+                <Skeleton className="h-6 w-[60px] mx-auto rounded-full" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

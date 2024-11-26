@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
-import { dataProker } from "@/data/dataProker";
+import { dataProker } from "@/lib/dataProker";
 
 import {
   Card,

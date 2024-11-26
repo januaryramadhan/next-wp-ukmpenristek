@@ -1,5 +1,5 @@
 import React from "react";
-import { dataProker } from "@/data/dataProker";
+import { dataProker } from "@/lib/dataProker";
 import {
   Table,
   TableBody,
