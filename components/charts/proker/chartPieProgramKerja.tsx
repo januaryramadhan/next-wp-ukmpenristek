@@ -56,7 +56,7 @@ export function ChartPieProgramKerja({ proker }: ChartPieProgramKerjaProps) {
   }));
 
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col justify-between">
       <CardHeader className="items-center pb-0">
         <CardTitle>Program Kerja Berdasarkan Jenis</CardTitle>
         <CardDescription>Sharing Session / Mimbar Mahasiswa</CardDescription>

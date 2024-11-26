@@ -1,11 +1,11 @@
 import { ChartPieAnggota } from "../charts/anggota/chartPieAnggota";
-import { BarChartProkerJenis } from "../charts/proker/barChartProkerJenis";
 import { ChartPieProgramKerja } from "../charts/proker/chartPieProgramKerja";
 import { RadarChartAnggotaFakultas } from "../charts/anggota/radarChartAnggotaFakultas";
 import { BarChartInteractive } from "../charts/proker/barChartInteractive";
 import { Section, Container } from "@/components/commons/craft";
 import { getAnggota } from "@/lib/notion/queries/getAnggota";
 import { getProker } from "@/lib/notion/queries/getProker";
+import { BarChartProkerJenis } from "../charts/proker/barChartProkerJenis";
 
 export async function Stats() {
   // Fetch data anggota
@@ -24,13 +24,13 @@ export async function Stats() {
             Pengurus, dan Program Kerja UKM.
           </p>
         </div>
-        <div className="mb-6">
-        <BarChartInteractive proker={proker} />        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="mb-6"></div>
+        <BarChartInteractive proker={proker} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-10">
           <ChartPieAnggota anggota={anggota} />
-          <RadarChartAnggotaFakultas anggota={anggota} /> {/* Jika komponen ini juga membutuhkan data anggota */}
+          <RadarChartAnggotaFakultas anggota={anggota} />
           <ChartPieProgramKerja proker={proker} />
-          <BarChartProkerJenis />
+          <BarChartProkerJenis proker={proker} />
         </div>
       </Container>
     </Section>

@@ -58,7 +58,7 @@ export function RadarChartAnggotaFakultas({ anggota }: RadarChartAnggotaFakultas
   );
 
   return (
-    <Card>
+    <Card className="flex flex-col justify-between">
       <CardHeader className="items-center pb-4">
         <CardTitle>Distribusi Anggota per Fakultas</CardTitle>
         <CardDescription>

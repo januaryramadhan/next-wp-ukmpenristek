@@ -1,13 +1,11 @@
 "use client";
 
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, XAxis } from "recharts";
-import { dataProker } from "@/lib/dataProker";
-
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
+  CardFooter, 
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -19,6 +17,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { FormattedProker } from "@/lib/notion/type";
 
 // Constants
 const PERIOD = [
@@ -46,7 +45,11 @@ const chartConfig: ChartConfig = {
   }
 };
 
-const processData = () => {
+interface BarChartProkerJenisProps {
+  proker: FormattedProker[];
+}
+
+const processData = (proker: FormattedProker[]) => {
   const monthlyData = PERIOD.map(period => ({
     monthYear: `${period.month} ${period.year}`,
     online: 0,
@@ -54,8 +57,8 @@ const processData = () => {
     total: 0
   }));
 
-  dataProker.forEach((proker) => {
-    const date = new Date(proker.date.split("→")[0].trim());
+  proker.forEach((item) => {
+    const date = new Date(item.tanggal.split("→")[0].trim());
     const year = date.getFullYear();
     const month = date.getMonth();
 
@@ -70,7 +73,7 @@ const processData = () => {
     });
 
     if (periodIndex !== -1) {
-      if (proker.platform === "Online") {
+      if (item.platform === "Online") {
         monthlyData[periodIndex].online++;
       } else {
         monthlyData[periodIndex].offline++;
@@ -82,8 +85,8 @@ const processData = () => {
   return monthlyData;
 };
 
-export function BarChartProkerJenis() {
-  const chartData = processData();
+export function BarChartProkerJenis({ proker }: BarChartProkerJenisProps) {
+  const chartData = processData(proker);
   
   const totalOnline = chartData.reduce((sum, item) => sum + item.online, 0);
   const totalOffline = chartData.reduce((sum, item) => sum + item.offline, 0);
@@ -93,7 +96,7 @@ export function BarChartProkerJenis() {
   const offlinePercentage = ((totalOffline / total) * 100).toFixed(1);
 
   return (
-    <Card>
+    <Card className="flex flex-col justify-between">
       <CardHeader className="items-center">
         <CardTitle>Program Kerja Per Bulan</CardTitle>
         <CardDescription>Desember 2024 - Oktober 2025</CardDescription>
@@ -103,7 +106,7 @@ export function BarChartProkerJenis() {
           <ResponsiveContainer width="100%" height={350}>
             <BarChart 
               data={chartData} 
-              margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+              margin={{ top: 10, right: 0, bottom: 0, left: 0 }}
             >
               <CartesianGrid 
                 strokeDasharray="4 4"
