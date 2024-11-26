@@ -23,6 +23,7 @@ export default async function TableProker() {
           <TableHeader>
             <TableRow>
               <TableHead>Nama Kegiatan</TableHead>
+              <TableHead>Hari</TableHead>
               <TableHead>Tanggal</TableHead>
               <TableHead>Waktu</TableHead>
               <TableHead>Jenis</TableHead>
@@ -30,27 +31,40 @@ export default async function TableProker() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {proker.map((item) => (
-              <TableRow key={item.id}>
-                <TableCell className="font-medium">{item.namaKegiatan}</TableCell>
-                <TableCell>{item.tanggal}</TableCell>
-                <TableCell>
-                  {item.jam === "upcoming" ? (
-                    <span className="text-muted-foreground text-sm">Upcoming</span>
-                  ) : (
-                    <span>{item.jam} WIB s/d selesai</span>
-                  )}
-                </TableCell>
-                <TableCell>{item.jenis}</TableCell>
-                <TableCell>
-                  <Badge 
-                    variant={item.platform === "Online" ? "default" : "secondary"}
-                  >
-                    {item.platform}
-                  </Badge>
-                </TableCell>
-              </TableRow>
-            ))}
+            {proker.map((item) => {
+              const date = new Date(item.tanggal);
+              const formattedDate = date.toLocaleDateString('id-ID', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+              });
+              const day = date.toLocaleDateString('id-ID', {
+                weekday: 'long',
+              });
+
+              return (
+                <TableRow key={item.id}>
+                  <TableCell className="font-medium">{item.namaKegiatan}</TableCell>
+                  <TableCell>{day}</TableCell>
+                  <TableCell>{formattedDate}</TableCell>
+                  <TableCell>
+                    {item.jam === "upcoming" ? (
+                      <span className="text-muted-foreground text-sm">Upcoming</span>
+                    ) : (
+                      <span>{item.jam} WIB s/d selesai</span>
+                    )}
+                  </TableCell>
+                  <TableCell>{item.jenis}</TableCell>
+                  <TableCell>
+                    <Badge 
+                      variant={item.platform === "Online" ? "default" : "secondary"}
+                    >
+                      {item.platform}
+                    </Badge>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </CardContent>
