@@ -1,4 +1,4 @@
-import { MetadataRoute } from "next";
+mport { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/wordpress/wordpress";
 import { siteConfig } from "@/site.config";
 
