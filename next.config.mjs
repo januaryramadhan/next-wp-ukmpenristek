@@ -8,6 +8,11 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  env: {
+    NOTION_TOKEN: process.env.NOTION_TOKEN,
+    NOTION_ANGGOTA_DB: process.env.NOTION_ANGGOTA_DB,
+    NOTION_PROKER_DB: process.env.NOTION_PROKER_DB,
+  },
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
     domains: [
@@ -20,7 +25,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: process.env.WORDPRESS_HOSTNAME || "bisque-duck-758265.hostingersite.com", // Fallback value
+        hostname:
+          process.env.WORDPRESS_HOSTNAME ||
+          "bisque-duck-758265.hostingersite.com", // Fallback value
         port: "",
         pathname: "/**",
       },

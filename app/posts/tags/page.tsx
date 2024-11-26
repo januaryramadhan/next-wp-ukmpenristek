@@ -1,4 +1,4 @@
-import { getAllTags } from "@/lib/wordpress";
+import { getAllTags } from "@/lib/wordpress/wordpress";
 import { Section, Container } from "@/components/commons/craft";
 import { Metadata } from "next";
 import Link from "next/link";

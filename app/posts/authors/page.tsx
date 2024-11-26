@@ -1,4 +1,4 @@
-import { getAllAuthors } from "@/lib/wordpress";
+import { getAllAuthors } from "@/lib/wordpress/wordpress";
 import { Section, Container } from "@/components/commons/craft";
 import Link from "next/link";
 import BackButton from "@/components/commons/back";

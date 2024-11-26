@@ -17,7 +17,7 @@ export function ProgramKerjaScroll() {
               <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
               </span>
             </h1>
-            {/* Tambahkan tombol Notion */}
+            
             <a 
               href="https://ukmpenristek.notion.site/Program-Kerja-UKM-10515417c02e80a4a9b8ef9166a54623?pvs=74" 
               target="_blank" 

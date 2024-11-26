@@ -1,4 +1,4 @@
-import { getAllPages } from "@/lib/wordpress";
+import { getAllPages } from "@/lib/wordpress/wordpress";
 import { Section, Container } from "@/components/commons/craft";
 import Link from "next/link";
 

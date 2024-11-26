@@ -1,4 +1,4 @@
-import { getPageBySlug } from "@/lib/wordpress";
+import { getPageBySlug } from "@/lib/wordpress/wordpress";
 import { Section, Container, Main } from "@/components/commons/craft";
 import { Metadata } from "next";
 

@@ -3,7 +3,7 @@ import {
   getFeaturedMediaById,
   getAuthorById,
   getCategoryById,
-} from "@/lib/wordpress";
+} from "@/lib/wordpress/wordpress";
 
 import { Section, Container, Article, Main } from "@/components/commons/craft";
 import { Metadata } from "next";

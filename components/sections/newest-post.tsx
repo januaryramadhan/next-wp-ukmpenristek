@@ -1,8 +1,8 @@
-import { getAllPosts, getFeaturedMediaById, getAuthorById } from "@/lib/wordpress";
+import { getAllPosts, getFeaturedMediaById, getAuthorById } from "@/lib/wordpress/wordpress";
 import { Section, Container } from "@/components/commons/craft";
 import Link from "next/link";
 import Image from "next/image";
-import { Post } from "@/lib/wordpress.d";
+import { Post } from "@/lib/wordpress/wordpress";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 

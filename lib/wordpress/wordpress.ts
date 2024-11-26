@@ -11,7 +11,7 @@ import {
   Page,
   Author,
   FeaturedMedia,
-} from "./wordpress.d";
+} from "./wordpress";
 
 // WordPress Config
 
