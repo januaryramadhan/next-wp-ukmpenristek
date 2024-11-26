@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { TrendingUp } from "lucide-react"
 import { Label, Pie, PieChart } from "recharts"
 import { dataAnggota } from "@/lib/dataAnggota"
 
@@ -59,15 +58,15 @@ export function ChartPieAnggota() {
   }, [])
 
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col ">
       <CardHeader className="items-center pb-0">
         <CardTitle>Distribusi Jenis Anggota</CardTitle>
         <CardDescription>Total Anggota UKM Penristek</CardDescription>
       </CardHeader>
-      <CardContent className="flex-1 pb-0">
+      <CardContent className="flex-1 ">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[250px]"
+          className="mx-auto aspect-square max-h-[300px]"
         >
           <PieChart>
             <ChartTooltip
@@ -114,7 +113,7 @@ export function ChartPieAnggota() {
           </PieChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 text-sm">
+      <CardFooter className="flex-col text-sm text-center">
         <div className="leading-none text-muted-foreground">
           Menampilkan distribusi jenis keanggotaan UKM Penristek
         </div>

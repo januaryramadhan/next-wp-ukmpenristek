@@ -12,6 +12,16 @@ const fontSans = FontSans({
   variable: "--font-sans",
 });
 
+// Definisikan konstanta untuk waktu revalidasi
+const REVALIDATE_TIMES = {
+  NEVER: false,        // Tidak pernah revalidate
+  MINUTE: 60,         // Setiap menit
+  HOUR: 3600,        // Setiap jam
+  DAY: 86400,        // Setiap hari
+  WEEK: 604800,      // Setiap minggu
+  MONTH: 2592000,    // Setiap bulan
+} as const;
+
 export const metadata: Metadata = {
   title: "UKM PENRISTEK UT",
   description:
@@ -27,7 +37,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 86400;
+export const revalidate = REVALIDATE_TIMES.DAY; // 24 jam
 
 export default function RootLayout({
   children,

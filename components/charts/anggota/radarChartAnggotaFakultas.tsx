@@ -1,9 +1,6 @@
 "use client"
 
-import { TrendingUp } from "lucide-react"
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts"
-import { dataAnggota } from "@/lib/dataAnggota"
-
 import {
   Card,
   CardContent,
@@ -18,17 +15,12 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+import { FormattedAnggota } from "@/lib/notion/type"
+import { useMemo } from "react"
 
-// Count members by faculty
-const facultyCounts = dataAnggota.reduce((acc, curr) => {
-  acc[curr.Fakultas] = (acc[curr.Fakultas] || 0) + 1
-  return acc
-}, {} as Record<string, number>)
-
-const chartData = Object.entries(facultyCounts).map(([faculty, count]) => ({
-  faculty,
-  count,
-}))
+interface RadarChartAnggotaFakultasProps {
+  anggota: FormattedAnggota[]
+}
 
 const chartConfig = {
   count: {
@@ -37,10 +29,33 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export function RadarChartAnggotaFakultas() {
-  // Calculate total members and percentage change
-  const totalMembers = chartData.reduce((acc, curr) => acc + curr.count, 0)
-  const maxCount = Math.max(...chartData.map(item => item.count))
+export function RadarChartAnggotaFakultas({ anggota }: RadarChartAnggotaFakultasProps) {
+  // Hitung jumlah anggota per fakultas menggunakan useMemo
+  const facultyCounts = useMemo(() => {
+    return anggota.reduce((acc, curr) => {
+      acc[curr.fakultas] = (acc[curr.fakultas] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+  }, [anggota]);
+
+  // Format data untuk chart
+  const chartData = useMemo(() => {
+    return Object.entries(facultyCounts).map(([faculty, count]) => ({
+      faculty,
+      count,
+    }));
+  }, [facultyCounts]);
+
+  // Hitung total anggota dan fakultas dengan anggota terbanyak
+  const totalMembers = useMemo(() => 
+    chartData.reduce((acc, curr) => acc + curr.count, 0),
+    [chartData]
+  );
+
+  const maxCount = useMemo(() => 
+    Math.max(...chartData.map(item => item.count)),
+    [chartData]
+  );
 
   return (
     <Card>

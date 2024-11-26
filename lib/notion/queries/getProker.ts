@@ -15,10 +15,40 @@ export async function getProker(): Promise<FormattedProker[]> {
 
     return response.results.map((page) => {
       const proker = page as unknown as NotionProker;
+      const dateString = proker.properties["Tanggal"].date.start;
+      
+      // Parse tanggal dan jam
+      let tanggal = dateString; // Simpan dateString asli untuk keperluan sorting
+      let displayTanggal = ""; // Untuk tampilan
+      let jam = "upcoming";
+      
+      if (dateString) {
+        const date = new Date(dateString);
+        
+        // Format tanggal ke "DD/MM/YYYY"
+        displayTanggal = date.toLocaleDateString('id-ID', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        });
+
+        // Jika ada jam dalam dateString (format ISO)
+        if (dateString.includes('T')) {
+          // Format jam ke "HH:mm"
+          jam = date.toLocaleTimeString('id-ID', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+          });
+        }
+      }
+
       return {
         id: proker.id,
         namaKegiatan: proker.properties["Nama Kegiatan"].title[0].text.content,
-        tanggal: proker.properties["Tanggal"].date.start,
+        tanggal: tanggal, // dateString asli untuk sorting
+        displayTanggal: displayTanggal, // tanggal yang diformat untuk tampilan
+        jam: jam,
         jenis: proker.properties["Jenis"].select.name,
         platform: proker.properties["Platform"].select.name,
       };

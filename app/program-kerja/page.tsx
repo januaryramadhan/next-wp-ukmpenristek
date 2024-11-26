@@ -3,6 +3,7 @@ import { Container, Section } from "@/components/commons/craft";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import TableProker from "@/components/table/table-proker";
 import { Metadata } from "next";
+import HeroProker from "@/components/sections/hero-proker";
 
 export const metadata: Metadata = {
   title: "Program Kerja | UKM PENRISTEK UT",
@@ -98,39 +99,22 @@ const ProgramKerjaPage = async () => {
   return (
     <main>
       {/* Hero Section */}
-      <Section className="bg-muted/50 py-20">
+      <Section className="py-20">
         <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl font-bold tracking-tight mb-4">Program Kerja</h1>
-            <p className="text-lg text-muted-foreground">
-              Berbagai kegiatan yang diselenggarakan oleh UKM PENRISTEK untuk mengembangkan potensi anggota
-            </p>
-          </div>
+         <HeroProker  />
         </Container>
       </Section>
 
       {/* Kalender Kegiatan Section */}
       <Section className="py-16">
         <Container>
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold tracking-tight mb-4">Kalender Kegiatan</h2>
-            <p className="text-lg text-muted-foreground">
-              Jadwal pelaksanaan kegiatan UKM PENRISTEK periode tahun 2024
-            </p>
-          </div>
           <TableProker />
         </Container>
       </Section>
 
       {/* Program Kerja Cards Section */}
-      <Section className="py-16 bg-muted/25">
+      <Section className="py-16">
         <Container>
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold tracking-tight mb-4">Detail Program Kerja</h2>
-            <p className="text-lg text-muted-foreground">
-              Informasi lengkap mengenai program kerja UKM PENRISTEK
-            </p>
-          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {prokerData.map((proker, index) => (
               <Card

@@ -2,8 +2,6 @@
 
 import * as React from "react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
-import { dataProker } from "@/lib/dataProker";
-
 import {
   Card,
   CardContent,
@@ -17,10 +15,15 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { FormattedProker } from "@/lib/notion/type";
 
-// Process data to count monthly events by platform for specific period
-const processMonthlyData = () => {
-  // Initialize array for months from Dec 2024 to Oct 2025
+interface BarChartInteractiveProps {
+  proker: FormattedProker[];
+}
+
+// Process data to count monthly events by platform
+const processMonthlyData = (proker: FormattedProker[]) => {
+  // Initialize array for months from Dec 2024 to Oct 2025 (11 months)
   const monthlyData = Array(11)
     .fill(null)
     .map(() => ({
@@ -28,19 +31,18 @@ const processMonthlyData = () => {
       online: 0,
     }));
 
-  dataProker.forEach((proker) => {
-    const date = new Date(proker.date.split("→")[0]);
+  proker.forEach((item) => {
+    const date = new Date(item.tanggal);
     const year = date.getFullYear();
     const month = date.getMonth();
 
     // Only process data from Dec 2024 to Oct 2025
     if (
       (year === 2024 && month === 11) || // December 2024
-      (year === 2025 && month <= 9)
+      (year === 2025 && month <= 9)      // January to October 2025
     ) {
-      // Jan to Oct 2025
-      const monthIndex = year === 2024 ? 0 : month + 1; // Adjust index for Dec 2024
-      if (proker.platform === "Online") {
+      const monthIndex = year === 2024 ? 0 : month + 1; // Dec 2024 = index 0
+      if (item.platform === "Online") {
         monthlyData[monthIndex].online++;
       } else {
         monthlyData[monthIndex].offline++;
@@ -63,8 +65,6 @@ const processMonthlyData = () => {
   }));
 };
 
-const chartData = processMonthlyData();
-
 interface ChartConfigItem {
   label: string;
   color?: string;
@@ -75,40 +75,39 @@ const chartConfig: Record<string, ChartConfigItem> = {
     label: "Jumlah Program Kerja",
   },
   offline: {
-    label: "Program Kerja Offline",
+    label: "Offline",
     color: "hsl(var(--chart-1))",
   },
   online: {
-    label: "Program Kerja Online",
+    label: "Online",
     color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 
-export function BarChartInteractive() {
-  const [activeChart, setActiveChart] = React.useState<"offline" | "online">(
-    "offline"
-  );
+export function BarChartInteractive({ proker }: BarChartInteractiveProps) {
+  const [activeChart, setActiveChart] = React.useState<"offline" | "online">("offline");
+  
+  const chartData = React.useMemo(() => processMonthlyData(proker), [proker]);
 
   const total = React.useMemo(
     () => ({
-      offline: chartData.reduce((acc, curr) => acc + curr.offline, 0),
-      online: chartData.reduce((acc, curr) => acc + curr.online, 0),
+      offline: proker.filter(item => item.platform === "Offline").length,
+      online: proker.filter(item => item.platform === "Online").length,
     }),
-    []
+    [proker]
   );
 
   return (
     <Card>
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-          <CardTitle>Program Kerja per Bulan</CardTitle>
+          <CardTitle>Program Kerja</CardTitle>
           <CardDescription>
-            Distribusi program kerja (Des 2024 - Okt 2025)
+            Distribusi program kerja tahun 2025
           </CardDescription>
         </div>
         <div className="flex">
           {["offline", "online"].map((key) => {
-            // Explicitly type the chart constant as "offline" | "online"
             const chart = key as "offline" | "online";
             return (
               <button
@@ -149,9 +148,8 @@ export function BarChartInteractive() {
               minTickGap={32}
               tickFormatter={(value) => {
                 const date = new Date(value);
-                return date.toLocaleDateString("en-US", {
+                return date.toLocaleDateString("id-ID", {
                   month: "short",
-                  year: "2-digit",
                 });
               }}
             />
@@ -161,7 +159,7 @@ export function BarChartInteractive() {
                   className="w-[150px]"
                   nameKey="proker"
                   labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("en-US", {
+                    return new Date(value).toLocaleDateString("id-ID", {
                       month: "long",
                       year: "numeric",
                     });

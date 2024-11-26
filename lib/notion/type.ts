@@ -131,10 +131,12 @@ export interface FormattedAnggota {
   fotoProfil: string;
 }
 
+
 export interface FormattedProker {
   id: string;
   namaKegiatan: string;
   tanggal: string;
+  jam: string | "upcoming";  // Tambahkan field jam
   jenis: string;
   platform: Platform;
 }

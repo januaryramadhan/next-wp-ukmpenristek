@@ -1,8 +1,7 @@
 "use client";
 
 import { TrendingUp } from "lucide-react";
-import { LabelList, Pie, PieChart } from "recharts";
-
+import { LabelList, Pie, PieChart, Cell } from "recharts";
 import {
   Card,
   CardContent,
@@ -17,66 +16,89 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { dataProker } from "@/lib/dataProker";
+import { FormattedProker } from "@/lib/notion/type";
 
-// Count proker by platform
-const getPlatformCounts = () => {
-  const counts = {
-    Online: dataProker.filter((proker) => proker.platform === "Online").length,
-    Offline: dataProker.filter((proker) => proker.platform === "Offline")
-      .length,
-  };
+interface ChartPieProgramKerjaProps {
+  proker: FormattedProker[];
+}
+
+// Count proker by specific types
+const getProkerCountsByType = (proker: FormattedProker[]) => {
+  const types = ["Sharing Session", "Mimbar Mahasiswa"];
+
+  const counts = types.reduce((acc, type) => {
+    acc[type] = proker.filter((item) => item.jenis === type).length;
+    return acc;
+  }, {} as Record<string, number>);
+
   return counts;
 };
 
-const platformCounts = getPlatformCounts();
-
-const chartData = [
-  { platform: "Online", count: platformCounts.Online, fill: "hsl(var(--chart-1))" },
-  { platform: "Offline", count: platformCounts.Offline, fill: "hsl(var(--chart-2))" },
-]
-
 const chartConfig = {
-  Online: {
-    label: "Online",
+  "Sharing Session": {
+    label: "Sharing Session",
     color: "hsl(var(--chart-1))",
   },
-  Offline: {
-    label: "Offline",
+  "Mimbar Mahasiswa": {
+    label: "Mimbar Mahasiswa",
     color: "hsl(var(--chart-2))",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
-export function ChartPieProgramKerja() {
-  const total = dataProker.length;
-  const onlinePercentage = ((platformCounts.Online / total) * 100).toFixed(1);
-  const offlinePercentage = ((platformCounts.Offline / total) * 100).toFixed(1);
+export function ChartPieProgramKerja({ proker }: ChartPieProgramKerjaProps) {
+  const prokerCounts = getProkerCountsByType(proker);
+  const total = proker.length;
+
+  const chartData = Object.keys(prokerCounts).map((key) => ({
+    type: key,
+    count: prokerCounts[key],
+    fill: chartConfig[key].color,
+  }));
 
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Program Kerja by Platform</CardTitle>
-        <CardDescription>2024 - 2025</CardDescription>
+        <CardTitle>Program Kerja Berdasarkan Jenis</CardTitle>
+        <CardDescription>Sharing Session / Mimbar Mahasiswa</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[250px] [&_.recharts-text]:fill-background"
+          className="mx-auto aspect-square max-h-[400px] pb-0 [&_.recharts-pie-label-text]:fill-foreground"
         >
           <PieChart>
             <ChartTooltip
               content={<ChartTooltipContent nameKey="count" hideLabel />}
             />
-            <Pie data={chartData} dataKey="count">
-              <LabelList
-                dataKey="platform"
-                className="fill-background"
-                stroke="none"
-                fontSize={12}
-                formatter={(value: keyof typeof chartConfig) =>
-                  `${chartConfig[value].label} (${value === "Online" ? onlinePercentage : offlinePercentage}%)`
-                }
-              />
+            <Pie
+              data={chartData}
+              dataKey="count"
+              nameKey="type"
+              labelLine={false}
+              outerRadius={80}
+              label={({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+                const RADIAN = Math.PI / 180;
+                const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+                const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+                return (
+                  <text
+                    x={x}
+                    y={y}
+                    fill="white"
+                    textAnchor={x > cx ? "start" : "end"}
+                    dominantBaseline="central"
+                    className="text-xs"
+                  >
+                    {`${chartData[index].type} (${(percent * 100).toFixed(0)}%)`}
+                  </text>
+                );
+              }}
+            >
+              {chartData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.fill} />
+              ))}
             </Pie>
           </PieChart>
         </ChartContainer>
@@ -85,9 +107,12 @@ export function ChartPieProgramKerja() {
         <div className="flex gap-2 font-medium leading-none">
           Total Program Kerja: {total} kegiatan
         </div>
-        <div className="leading-none text-muted-foreground">
-          Online: {platformCounts.Online} kegiatan | Offline:{" "}
-          {platformCounts.Offline} kegiatan
+        <div className="leading-none text-muted-foreground text-center">
+          {Object.keys(prokerCounts).map((key) => (
+            <div className="pt-2" key={key}>
+              {chartConfig[key].label}: {prokerCounts[key]} kegiatan
+            </div>
+          ))}
         </div>
       </CardFooter>
     </Card>
