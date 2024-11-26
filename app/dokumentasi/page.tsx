@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Construction } from "lucide-react";
 import { Section, Container } from "@/components/commons/craft";
 
