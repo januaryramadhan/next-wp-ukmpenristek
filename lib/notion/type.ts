@@ -90,53 +90,31 @@ export interface NotionProker {
   id: string;
   properties: {
     "Nama Kegiatan": {
-      title: [
-        {
-          text: {
-            content: string;
-          };
-        },
-      ];
+      title: [{ text: { content: string } }];
     };
-    Tanggal: {
-      date: {
-        start: string;
-      };
+    "Tanggal": {
+      date: { start: string };
     };
-    Jenis: {
-      select: {
-        name: string;
-      };
+    "Jenis": {
+      select: { name: string };
     };
-    Platform: {
-      select: {
-        name: Platform;
-      };
+    "Platform": {
+      select: { name: string };
+    };
+    "Tempat": {  // Tambahkan ini
+      rich_text: [{ text: { content: string } }];
     };
   };
 }
-
-export interface FormattedAnggota {
-  id: string;
-  namaAnggota: string;
-  tanggalLahir: string;
-  fakultas: string;
-  prodi: string;
-  nim: number;
-  telfon: string;
-  jenisAnggota: JenisAnggota;
-  email: string;
-  tanggalBergabung: string;
-  jenisKelamin: JenisKelamin;
-  fotoProfil: string;
-}
-
 
 export interface FormattedProker {
   id: string;
   namaKegiatan: string;
   tanggal: string;
-  jam: string | "upcoming";  // Tambahkan field jam
+  displayTanggal: string;
+  jam: string;
   jenis: string;
-  platform: Platform;
+  platform: string;
+  iconName: string;
+  tempat: string;  // Tambahkan ini
 }

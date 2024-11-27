@@ -5,11 +5,13 @@ import FAQ from "@/components/sections/faq";
 import VisiMisi from "@/components/sections/visi-misi";
 import { StrukturOrganisasi } from "@/components/charts/strukturOrganisasi";
 import { NewestPost } from "@/components/sections/newest-post";
+import ProkerTerdekat from "@/components/sections/proker-terdekat";
 
 export default function Home() {
   return (
     <>
       <Hero1 />
+      <ProkerTerdekat />
       <NewestPost />
       <VisiMisi />
       <StrukturOrganisasi />

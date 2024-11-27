@@ -1,8 +1,35 @@
 import { notion } from "../client";
 import { NotionProker, FormattedProker } from "../type";
 
+// Fungsi untuk mendapatkan nama ikon berdasarkan jenis kegiatan
+function getIconNameForJenis(jenis: string): string {
+  switch (jenis) {
+    case "Pendataan Anggota":
+      return "UserCheck";
+    case "Orientasi Anggota Baru":
+      return "UserPlus";
+    case "Rapat":
+      return "Calendar";
+    case "Sharing Session":
+      return "MessageCircle";
+    case "Meetup":
+      return "Users";
+    case "Agenda Komunitas":
+      return "ClipboardList";
+    case "Seminar Nasional":
+      return "Mic";
+    case "Farewell":
+      return "Smile";
+    case "Workshop":
+      return "PenTool";
+    default:
+      return "Pin"; // Default icon
+  }
+}
+
 export async function getProker(): Promise<FormattedProker[]> {
   try {
+    console.log("Fetching proker from Notion...");
     const response = await notion.databases.query({
       database_id: process.env.NOTION_PROKER_DB!,
       sorts: [
@@ -12,6 +39,8 @@ export async function getProker(): Promise<FormattedProker[]> {
         },
       ],
     });
+
+    console.log("Proker fetched successfully:", response);
 
     return response.results.map((page) => {
       const proker = page as unknown as NotionProker;
@@ -43,14 +72,25 @@ export async function getProker(): Promise<FormattedProker[]> {
         }
       }
 
+      const jenis = proker.properties["Jenis"].select.name;
+      const iconName = getIconNameForJenis(jenis);
+
+      // Mengambil data tempat dari Notion
+      // Jika tidak ada data tempat, gunakan "Akan diumumkan"
+      const tempat = proker.properties["Tempat"].rich_text.length > 0
+        ? proker.properties["Tempat"].rich_text[0].text.content
+        : "Akan diumumkan";
+
       return {
         id: proker.id,
         namaKegiatan: proker.properties["Nama Kegiatan"].title[0].text.content,
         tanggal: tanggal, // dateString asli untuk sorting
         displayTanggal: displayTanggal, // tanggal yang diformat untuk tampilan
         jam: jam,
-        jenis: proker.properties["Jenis"].select.name,
+        jenis: jenis,
         platform: proker.properties["Platform"].select.name,
+        iconName: iconName, // Nama ikon untuk jenis kegiatan
+        tempat: tempat, // Data tempat dari Notion
       };
     });
   } catch (error) {

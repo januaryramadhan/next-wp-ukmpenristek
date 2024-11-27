@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/table";
 import { getProker } from "@/lib/notion/queries/getProker";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge"; // Import Badge jika diperlukan
+import { Badge } from "@/components/ui/badge";
 
 export default async function TableProker() {
   const proker = await getProker();
@@ -26,6 +26,7 @@ export default async function TableProker() {
               <TableHead>Hari</TableHead>
               <TableHead>Tanggal</TableHead>
               <TableHead>Waktu</TableHead>
+              <TableHead>Tempat</TableHead>
               <TableHead>Jenis</TableHead>
               <TableHead>Platform</TableHead>
             </TableRow>
@@ -53,6 +54,9 @@ export default async function TableProker() {
                     ) : (
                       <span>{item.jam} WIB s/d selesai</span>
                     )}
+                  </TableCell>
+                  <TableCell>
+                    <span className="text-sm">{item.tempat}</span>
                   </TableCell>
                   <TableCell>{item.jenis}</TableCell>
                   <TableCell>
