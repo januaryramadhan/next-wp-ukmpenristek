@@ -173,9 +173,18 @@ export async function getPostsByTagSlug(tagSlug: string): Promise<Post[]> {
   return posts;
 }
 
-export async function getFeaturedMediaById(id: number): Promise<FeaturedMedia> {
+export async function getFeaturedMediaById(id: number): Promise<FeaturedMedia | null> {
+  if (id === 0) {
+    console.warn("Invalid media ID: 0");
+    return null;
+  }
   const url = getUrl(`/wp-json/wp/v2/media/${id}`);
+  console.log("Fetching media URL:", url);
   const response = await fetch(url);
+  if (!response.ok) {
+    console.error(`Failed to fetch media with ID ${id}`);
+    return null;
+  }
   const featuredMedia: FeaturedMedia = await response.json();
   return featuredMedia;
 }

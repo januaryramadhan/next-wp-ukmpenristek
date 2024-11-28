@@ -5,7 +5,7 @@ import {
   getCategoryById,
 } from "@/lib/wordpress/wordpress";
 
-import { Section, Container, Article, Main } from "@/components/commons/craft";
+import { Section, Container, Article } from "@/components/commons/craft";
 import { Metadata } from "next";
 import { badgeVariants } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -27,7 +27,7 @@ export async function generateMetadata({
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const post = await getPostBySlug(params.slug);
-  const featuredMedia = await getFeaturedMediaById(post.featured_media);
+  const featuredMedia = post.featured_media ? await getFeaturedMediaById(post.featured_media) : null;
   const author = await getAuthorById(post.author);
   const date = new Date(post.date).toLocaleDateString("en-US", {
     month: "long",
@@ -63,14 +63,20 @@ export default async function Page({ params }: { params: { slug: string } }) {
             {category.name}
           </Link>
         </div>
-        <div className="h-96 my-12 md:h-[560px] overflow-hidden flex items-center justify-center border rounded-lg bg-accent/25">
-          {/* eslint-disable-next-line */}
-          <img
-            className="w-full"
-            src={featuredMedia.source_url}
-            alt={post.title.rendered}
-          />
-        </div>
+        {featuredMedia && featuredMedia.source_url ? (
+          <div className="h-96 my-12 md:h-[560px] overflow-hidden flex items-center justify-center border rounded-lg bg-accent/25">
+            {/* eslint-disable-next-line */}
+            <img
+              className="w-full"
+              src={featuredMedia.source_url}
+              alt={post.title.rendered}
+            />
+          </div>
+        ) : (
+          <div className="h-96 my-12 md:h-[560px] overflow-hidden flex items-center justify-center border rounded-lg bg-accent/25">
+            <span>No Image Available</span>
+          </div>
+        )}
         <Article dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
       </Container>
     </Section>

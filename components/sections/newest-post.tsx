@@ -14,7 +14,7 @@ export async function NewestPost() {
   // Fetch featured media and author details for each post
   const postsWithDetails = await Promise.all(
     recentPosts.map(async (post) => {
-      const featuredMedia = await getFeaturedMediaById(post.featured_media);
+      const featuredMedia = post.featured_media ? await getFeaturedMediaById(post.featured_media) : null;
       const author = await getAuthorById(post.author);
       return {
         ...post,
@@ -25,7 +25,7 @@ export async function NewestPost() {
   );
 
   return (
-    <Section className=" py-16">
+    <Section className="py-16">
       <Container>
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight mb-4">
@@ -53,12 +53,18 @@ export async function NewestPost() {
                   index === 0 ? "aspect-[2/1.5]" : "aspect-[2/1]"
                 )}
               >
-                <Image
-                  src={post.featuredMedia.source_url}
-                  alt={post.title.rendered}
-                  fill
-                  className="object-cover transition-transform group-hover:scale-105"
-                />
+                {post.featuredMedia && post.featuredMedia.source_url ? (
+                  <Image
+                    src={post.featuredMedia.source_url}
+                    alt={post.title.rendered}
+                    fill
+                    className="object-cover transition-transform group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="bg-gray-200 h-full w-full flex items-center justify-center">
+                    <span>No Image Available</span>
+                  </div>
+                )}
               </div>
               <div className="p-4 space-y-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">

@@ -9,7 +9,7 @@ import {
 } from "@/lib/wordpress/wordpress";
 
 export default async function PostCard({ post }: { post: Post }) {
-  const media = await getFeaturedMediaById(post.featured_media);
+  const media = post.featured_media ? await getFeaturedMediaById(post.featured_media) : null;
   const author = await getAuthorById(post.author);
   const date = new Date(post.date).toLocaleDateString("en-US", {
     month: "long",
@@ -26,12 +26,18 @@ export default async function PostCard({ post }: { post: Post }) {
           "bg-white dark:bg-card w-full max-w-xs mx-auto h-full flex flex-col"
         )}
       >
-        <div
-          className="h-48 w-full bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${media.source_url})`,
-          }}
-        ></div>
+        {media && media.source_url ? (
+          <div
+            className="h-48 w-full bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${media.source_url})`,
+            }}
+          ></div>
+        ) : (
+          <div className="h-48 w-full bg-gray-200 flex items-center justify-center">
+            <span>No Image Available</span>
+          </div>
+        )}
         <div className="p-4 flex flex-col flex-grow">
           <div className="flex items-center space-x-4 mb-4">
             <Image
