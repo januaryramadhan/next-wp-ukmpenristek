@@ -49,6 +49,10 @@ export async function getAllPosts(filterParams?: {
     author: filterParams?.author,
     tags: filterParams?.tag,
     categories: filterParams?.category,
+    // Tambahkan parameter pengurutan
+    order: 'desc', // descending order (terbaru ke terlama)
+    orderby: 'date', // urutkan berdasarkan tanggal
+    per_page: 100, // jumlah post per halaman (opsional)
   });
   return fetchWithRevalidate<Post[]>(url);
 }
@@ -187,4 +191,13 @@ export async function getFeaturedMediaById(id: number): Promise<FeaturedMedia | 
   }
   const featuredMedia: FeaturedMedia = await response.json();
   return featuredMedia;
+}
+
+export async function getLatestPosts(count: number = 10): Promise<Post[]> {
+  const url = getUrl("/wp-json/wp/v2/posts", {
+    order: 'desc',
+    orderby: 'date',
+    per_page: count,
+  });
+  return fetchWithRevalidate<Post[]>(url);
 }

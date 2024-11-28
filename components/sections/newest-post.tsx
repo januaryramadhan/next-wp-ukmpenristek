@@ -1,20 +1,26 @@
-import { getAllPosts, getFeaturedMediaById, getAuthorById } from "@/lib/wordpress/wordpress";
+import {
+  getAllPosts,
+  getFeaturedMediaById,
+  getAuthorById,
+} from "@/lib/wordpress/wordpress";
 import { Section, Container } from "@/components/commons/craft";
 import Link from "next/link";
 import Image from "next/image";
-import { Post } from "@/lib/wordpress/wordpress";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { getLatestPosts } from "@/lib/wordpress/wordpress";
 
 export async function NewestPost() {
   // Fetch 3 most recent posts
-  const posts = await getAllPosts();
+  const posts = await getLatestPosts(6);
   const recentPosts = posts.slice(0, 3);
 
   // Fetch featured media and author details for each post
   const postsWithDetails = await Promise.all(
     recentPosts.map(async (post) => {
-      const featuredMedia = post.featured_media ? await getFeaturedMediaById(post.featured_media) : null;
+      const featuredMedia = post.featured_media
+        ? await getFeaturedMediaById(post.featured_media)
+        : null;
       const author = await getAuthorById(post.author);
       return {
         ...post,
