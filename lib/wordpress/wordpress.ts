@@ -168,10 +168,11 @@ export async function getPostsByCategorySlug(categorySlug: string): Promise<Post
 export async function getPostsByTagSlug(tagSlug: string): Promise<Post[]> {
   const tag = await getTagBySlug(tagSlug);
   const url = getUrl("/wp-json/wp/v2/posts", { tags: tag.id });
-  return fetchWithRevalidate<Post[]>(url);
+  const response = await fetch(url);
+  const posts: Post[] = await response.json();
+  return posts;
 }
 
-// Media
 export async function getFeaturedMediaById(id: number): Promise<FeaturedMedia> {
   const url = getUrl(`/wp-json/wp/v2/media/${id}`);
   const response = await fetch(url);
