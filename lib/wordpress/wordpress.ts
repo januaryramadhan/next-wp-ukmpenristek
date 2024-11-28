@@ -174,5 +174,7 @@ export async function getPostsByTagSlug(tagSlug: string): Promise<Post[]> {
 // Media
 export async function getFeaturedMediaById(id: number): Promise<FeaturedMedia> {
   const url = getUrl(`/wp-json/wp/v2/media/${id}`);
-  return fetchWithRevalidate<FeaturedMedia>(url);
+  const response = await fetch(url);
+  const featuredMedia: FeaturedMedia = await response.json();
+  return featuredMedia;
 }
