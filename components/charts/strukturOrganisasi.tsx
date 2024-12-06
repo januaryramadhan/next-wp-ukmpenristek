@@ -204,7 +204,6 @@ export const StrukturOrganisasi = () => {
   return (
     <Section>
       <Container>
-        <Card className="transition-all duration-300 bg-transparent">
           <CardHeader>
             <CardTitle>Struktur Organisasi</CardTitle>
             <CardDescription>
@@ -285,7 +284,6 @@ export const StrukturOrganisasi = () => {
               </div>
             </div>
           </CardContent>
-        </Card>
       </Container>
     </Section>
   );
