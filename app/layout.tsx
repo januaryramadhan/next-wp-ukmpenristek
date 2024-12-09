@@ -15,7 +15,7 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ukmpenristekut.com"),
+  metadataBase: new URL("https://ukmpenristekut.site"),
   title: {
     default: "UKM PENRISTEK UT",
     template: "%s | UKM PENRISTEK UT",

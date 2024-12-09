@@ -3,5 +3,5 @@ type SiteConfig = {
 };
 
 export const siteConfig: SiteConfig = {
-  site_domain: "https://ukmpenristek.com",
+  site_domain: "https://ukmpenristek.site",
 };
