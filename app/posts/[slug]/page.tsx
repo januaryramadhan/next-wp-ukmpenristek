@@ -50,10 +50,10 @@ function PostLoading() {
 export async function generateStaticParams() {
   const { data } = await getClient().query({
     query: GET_ALL_POSTS,
-    variables: { first: 100 },
+    variables: { first: 50 },
     context: {
       fetchOptions: {
-        next: { revalidate: 300 }
+        next: { revalidate: 3600 }
       }
     }
   });
