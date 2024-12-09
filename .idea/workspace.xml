@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4d54b9fb-496f-4c8c-9a6b-68a223f768eb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pages/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pages/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/posts/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/posts/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/posts/authors/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/posts/authors/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/posts/categories/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/posts/categories/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/posts/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/posts/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/posts/tags/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/posts/tags/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/sitemap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/sitemap.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/charts/anggota/chartPieAnggota.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/charts/anggota/chartPieAnggota.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/charts/anggota/radarChartAnggotaFakultas.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/charts/anggota/radarChartAnggotaFakultas.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/charts/proker/barChartInteractive.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/charts/proker/barChartInteractive.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/charts/proker/barChartProkerJenis.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/charts/proker/barChartProkerJenis.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/charts/proker/chartPieProgramKerja.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/charts/proker/chartPieProgramKerja.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/charts/strukturOrganisasi.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/charts/strukturOrganisasi.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/layouts/nav/mobile-nav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layouts/nav/mobile-nav.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/layouts/nav/nav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layouts/nav/nav.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/posts/post-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/posts/post-card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/sections/data-anggota.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sections/data-anggota.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/sections/newest-post.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sections/newest-post.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/sections/proker-terdekat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sections/proker-terdekat.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/sections/stats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sections/stats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/table/table-anggota.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/table/table-anggota.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/table/table-proker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/table/table-proker.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/accordion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/accordion.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/alert.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/alert.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/avatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/background-lines.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/background-lines.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/badge.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/badge.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/bento-grid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/bento-grid.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/calendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/calendar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/chart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/chart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/dropdown-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/dropdown-menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/following-pointer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/following-pointer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/hover-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/hover-card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/label.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/label.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/macbook-scroll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/macbook-scroll.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/navigation-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/navigation-menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/pagination.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/pagination.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/scroll-area.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/scroll-area.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/select.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/separator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/separator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/sheet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/sheet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/skeleton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/skeleton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/tabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/tabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/tooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/tooltip.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/tracing-beam.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/tracing-beam.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dataAnggota.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/dataAnggota.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dataPengurus.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/dataPengurus.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dataProker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/dataProker.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/notion/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/notion/client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/notion/queries/getAnggota.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/notion/queries/getAnggota.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/notion/queries/getProker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/notion/queries/getProker.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/notion/type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/notion/type.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/types.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/types.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/wordpress/wordpress.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/wordpress/wordpress.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/wordpress/wordpress.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/wordpress/wordpress.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2pyfIidJJGN2Jd9gDwhVCSJ4fLY" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/januaryramadhan/Dev/next-wp-ukmpenristek",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23726.96" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4d54b9fb-496f-4c8c-9a6b-68a223f768eb" name="Changes" comment="" />
+      <created>1733743161727</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1733743161727</updated>
+      <workItem from="1733743163041" duration="988000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
