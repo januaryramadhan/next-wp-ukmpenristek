@@ -12,7 +12,6 @@ const nextConfig = {
     NOTION_TOKEN: process.env.NOTION_TOKEN,
     NOTION_ANGGOTA_DB: process.env.NOTION_ANGGOTA_DB,
     NOTION_PROKER_DB: process.env.NOTION_PROKER_DB,
-    WORDPRESS_GRAPHQL_ENDPOINT: procces.env.WORDPRESS_GRAPHQL_ENDPOINT
   },
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {

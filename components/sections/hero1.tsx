@@ -38,7 +38,7 @@ export const Hero1 = () => {
             </Link>
           </div>
           <div className="flex gap-4 flex-col">
-            <h1 className="text-3xl md:text-5xl max-w-2xl tracking-tighter text-center font-semibold">
+            <h1 className="text-3xl md:text-5xl max-w-2xl tracking-tighter text-center font-bold">
               UKM PENDIDIKAN, RISET, DAN TEKNOLOGI
             </h1>
             <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">

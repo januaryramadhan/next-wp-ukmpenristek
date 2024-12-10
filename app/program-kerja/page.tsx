@@ -99,7 +99,7 @@ const ProgramKerjaPage = async () => {
   return (
     <main>
       {/* Hero Section */}
-      <Section className="py-20">
+      <Section className="">
         <Container>
          <HeroProker  />
         </Container>

@@ -150,7 +150,7 @@ async function PostContent({ params }: Props) {
         <Container>
           <article>
             <header className="mb-8">
-              <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">
+              <h1 className="scroll-m-20 text-2xl font-bold tracking-tight lg:text-5xl mb-4">
                 <Balancer>{post.title}</Balancer>
               </h1>
 

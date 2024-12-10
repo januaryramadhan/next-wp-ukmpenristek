@@ -18,7 +18,7 @@ export default function ProfilUKMPage() {
   return (
     <main>
       {/* Hero Section */}
-      <Section className="py-16">
+      <Section>
         <Container>
           <HeroProfil />
         </Container>

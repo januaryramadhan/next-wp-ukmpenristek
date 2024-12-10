@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function HeroProker() {
   return (
-    <section className=" py-32 relative overflow-hidden">
+    <section className=" py-15 relative overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Background Pattern */}
 

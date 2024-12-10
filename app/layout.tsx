@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "UKM PENRISTEK UT",
-      url: "https://ukmpenristekut.com",
+      url: "https://ukmpenristekut.site",
     },
   ],
   creator: "UKM PENRISTEK UT",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     siteName: "UKM PENRISTEK UT",
     images: [
       {
-        url: "/images/og-image.jpg", // Pastikan gambar ini ada di direktori public/images
+        url: "https://i.ibb.co.com/tz7M615/og-image.jpg", // Pastikan gambar ini ada di direktori public/images
         width: 1200,
         height: 630,
         alt: "UKM PENRISTEK UT",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     title: "UKM PENRISTEK UT", 
     description: "Unit Kegiatan Mahasiswa Pendidikan, Riset, dan Teknologi Universitas Terbuka",
     creator: "@ukmpenristekut",
-    images: ["/images/og-image.jpg"],
+    images: ["/twitter-image.jpg"],
   },
   robots: {
     index: true,
