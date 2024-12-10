@@ -11,9 +11,9 @@ export function ProgramKerjaScroll() {
       <ContainerScroll
         titleComponent={
           <>
-            <h1 className="text-4xl font-semibold text-black dark:text-white">
-              Sharing Session Skema Perkuliahan<br />
-              Universitas Terbuka <br />
+            <h1 className="text-2xl font-semibold text-black dark:text-white">
+              Program Kerja<br />
+              1 Tahun Periode <br />
               <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
               </span>
             </h1>
