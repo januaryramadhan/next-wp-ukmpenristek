@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     siteName: "UKM PENRISTEK UT",
     images: [
       {
-        url: "https://i.ibb.co.com/tz7M615/og-image.jpg", // Pastikan gambar ini ada di direktori public/images
+        url: "https://bisque-duck-758265.hostingersite.com/wp-content/uploads/2024/12/og-img.png", // Pastikan gambar ini ada di direktori public/images
         width: 1200,
         height: 630,
         alt: "UKM PENRISTEK UT",

@@ -7,6 +7,7 @@ import { Section, Container } from "@/components/commons/craft";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { AddToCalendarButton } from "@/components/commons/AddToCalendarButton";
 
 // Loading skeleton component
 const LoadingSkeleton = () => (
@@ -178,6 +179,17 @@ async function ProkerTerdekatContent() {
                         >
                           {item.jenis}
                         </Badge>
+                      </div>
+                      <div className="mt-4">
+                        <AddToCalendarButton 
+                          post={{
+                            id: item.id,
+                            title: item.namaKegiatan,
+                            date: item.tanggal,
+                            excerpt: item.jenis,
+                            slug: item.id,
+                          }} 
+                        />
                       </div>
                     </CardContent>
                   </Card>
