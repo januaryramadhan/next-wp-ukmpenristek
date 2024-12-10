@@ -40,13 +40,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: "https://ukmpenristekut.com",
+    url: "https://ukmpenristekut.site",
     title: "UKM PENRISTEK UT",
     description: "Unit Kegiatan Mahasiswa Pendidikan, Riset, dan Teknologi Universitas Terbuka",
     siteName: "UKM PENRISTEK UT",
     images: [
       {
-        url: "/images/og-image.jpg", // Make sure this image exists
+        url: "/images/og-image.jpg", // Pastikan gambar ini ada di direktori public/images
         width: 1200,
         height: 630,
         alt: "UKM PENRISTEK UT",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     title: "UKM PENRISTEK UT", 
     description: "Unit Kegiatan Mahasiswa Pendidikan, Riset, dan Teknologi Universitas Terbuka",
     creator: "@ukmpenristekut",
-    images: ["/images/og-image.jpg"], // Make sure this image exists
+    images: ["/images/og-image.jpg"],
   },
   robots: {
     index: true,
