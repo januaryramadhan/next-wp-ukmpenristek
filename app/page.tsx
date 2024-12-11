@@ -6,10 +6,12 @@ import VisiMisi from "@/components/sections/visi-misi";
 import { StrukturOrganisasi } from "@/components/charts/strukturOrganisasi";
 import { NewestPost } from "@/components/sections/newest-post";
 import ProkerTerdekat from "@/components/sections/proker-terdekat";
+import { HeroSharingSession } from "@/components/sections/hero-sharing-session";
 
 export default function Home() {
   return (
     <>
+      <HeroSharingSession />
       <Hero1 />
       <ProkerTerdekat />
       <NewestPost />

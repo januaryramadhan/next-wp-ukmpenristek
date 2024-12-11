@@ -30,7 +30,7 @@ export default function HeroProfil() {
 
           {/* Heading */}
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-200"
+            className="text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-clip-text t bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-200"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}

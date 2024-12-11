@@ -16,7 +16,6 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 
 import { mainMenu, contentMenu } from "@/menu.config";
-import { ThemeToggle } from "../../theme/theme-toggle";
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
@@ -40,7 +39,7 @@ export function MobileNav() {
             onOpenChange={setOpen}
           >
             <ArrowRightSquare className="mr-2 h-4 w-4" />
-            <span className="text-muted-foreground">UKM PENRISTEK UT</span>
+            <span className="text-muted-foreground font-bold">UKM PENRISTEK UT</span>
           </MobileLink>
         </div>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">

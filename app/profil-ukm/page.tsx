@@ -24,15 +24,8 @@ export default function ProfilUKMPage() {
         </Container>
       </Section>
 
-      {/* Fokus Area Section */}
-      <Section className="py-16">
-        <Container>
-          <FokusArea />
-        </Container>
-      </Section>
-
       {/* Visi Misi Section */}
-      <Section className="py-16" id="visi-misi">
+      <Section id="visi-misi">
         <Container>
           <VisiMisi />
         </Container>

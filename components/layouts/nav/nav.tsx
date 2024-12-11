@@ -29,10 +29,10 @@ export const Nav = ({ className, children, id }: NavProps) => {
         className="max-w-5xl mx-auto py-4 px-6 sm:px-8 flex justify-between items-center"
       >
         <Link
-          className="hover:opacity-75 transition-all flex gap-2 items-center"
+          className="hover:opacity-75 transition-all flex gap-2 items-center font-bold"
           href="/"
         >
-          <h2 className="sr-only font-semibold">UKM PENRISTEK UT</h2>
+          <h2 className="sr-only">UKM PENRISTEK UT</h2>
           <Image
             src={Logo}
             alt="Logo"
