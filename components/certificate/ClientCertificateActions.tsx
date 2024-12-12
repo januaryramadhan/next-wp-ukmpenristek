@@ -1,73 +1,56 @@
 'use client';
 
-import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
-import { jsPDF } from "jspdf";
-import { useState } from "react";
-import html2pdf from 'html2pdf.js';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { DownloadIcon } from 'lucide-react';
+import { cn } from '@/libs/utils';
 
 interface ClientCertificateActionsProps {
   certificateId: string;
+  className?: string;
 }
 
-export function ClientCertificateActions({ certificateId }: ClientCertificateActionsProps) {
-  const [isDownloading, setIsDownloading] = useState(false);
+export function ClientCertificateActions({ 
+  certificateId,
+  className 
+}: ClientCertificateActionsProps) {
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleDownload = async () => {
-    const certificateElement = document.getElementById("certificate-container");
-    if (!certificateElement) {
-      alert("Sertifikat belum siap untuk diunduh. Mohon tunggu sebentar.");
-      return;
-    }
-
+    setIsLoading(true);
     try {
-      setIsDownloading(true);
+      // Import html2pdf only when needed
+      const html2pdf = (await import('html2pdf.js')).default;
+      
+      const element = document.getElementById('certificate-container');
+      if (!element) return;
 
       const opt = {
         margin: 0,
         filename: `sertifikat-${certificateId}.pdf`,
-        image: { type: 'auto' },
-        html2canvas: { 
-          scale: 2,
-          useCORS: true,
-          allowTaint: true,
-          backgroundColor: '#FFFFFF',
-          logging: false,
-        },
-        jsPDF: { 
-          unit: 'mm', 
-          format: 'a4', 
-          orientation: 'landscape',
-        }
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
       };
 
-      await html2pdf().from(certificateElement).set(opt).save();
-
+      await html2pdf().set(opt).from(element).save();
     } catch (error) {
-      console.error("Error generating PDF:", error);
-      alert("Terjadi kesalahan saat mengunduh sertifikat");
+      console.error('Error generating PDF:', error);
     } finally {
-      setIsDownloading(false);
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="flex gap-4">
-      <Button 
-        onClick={handleDownload} 
-        className="gap-2"
-        disabled={isDownloading}
-      >
-        <Download size={16} />
-        {isDownloading ? "Mengunduh..." : "Unduh Sertifikat (PDF)"} 
-      </Button>
+    <div className={cn("flex justify-center", className)}>
       <Button
+        onClick={handleDownload}
+        disabled={isLoading}
+        className="flex items-center gap-2"
         variant="outline"
-        onClick={() => window.history.back()}
-        className="print:hidden"
-        disabled={isDownloading}
       >
-        Kembali
+        <DownloadIcon className="h-4 w-4" />
+        {isLoading ? 'Mengunduh...' : 'Unduh Sertifikat'}
       </Button>
     </div>
   );

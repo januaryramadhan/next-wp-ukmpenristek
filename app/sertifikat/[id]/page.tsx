@@ -7,9 +7,9 @@ import { CertificatePreview } from "@/components/certificate/CertificatePreview"
 export const revalidate = 3600;
 
 interface SertifikatDetailPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const fetchSertifikat = async (id: string) => {
@@ -18,7 +18,8 @@ const fetchSertifikat = async (id: string) => {
 };
 
 const SertifikatDetailPage = async ({ params }: SertifikatDetailPageProps) => {
-  const { id } = params;
+  // Await the params
+  const { id } = await params;
   let sertifikat;
 
   try {
@@ -52,12 +53,10 @@ const SertifikatDetailPage = async ({ params }: SertifikatDetailPageProps) => {
     <Section>
       <Container>
         <div>
-          {/* Certificate Image */}
           <div className="py-7">
             <CertificateImage data={sertifikat} />
           </div>
 
-          {/* Certificate Preview */}
           <div className="flex justify-center py-7 hidden">
             <CertificatePreview 
               namaPeserta={sertifikat.nama}
@@ -69,12 +68,9 @@ const SertifikatDetailPage = async ({ params }: SertifikatDetailPageProps) => {
             />
           </div>
 
-          {/* Download Actions */}
           <div className="flex justify-center py-7">
             <ClientCertificateActions certificateId={id} />
           </div>
-
-          
         </div>
       </Container>
     </Section>
