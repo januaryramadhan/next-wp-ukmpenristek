@@ -1,8 +1,9 @@
-import { BackgroundPattern } from "./BackgroundPattern";
-import { CertificateContent } from "./CertificateContent";
+import { CertificateContent } from "./CertificateContent"; 
 import { CertificateFooter } from "./CertificateFooter";
 import { CertificateHeader } from "./CertificateHeader";
 import { CertificateSignature } from "./CertificateSignature";
+import { CertificateQr } from "./CertificateQr";
+import { CertificateLogo } from "./CertificateLogo";
 
 interface CertificatePreviewProps {
   namaPeserta: string;
@@ -22,36 +23,36 @@ export function CertificatePreview({
   jenisSertifikat,
 }: CertificatePreviewProps) {
   return (
-    // Wrapper dengan overflow auto untuk scroll
-    <div className="w-full overflow-visible">
-      {/* Container dengan min-width untuk memastikan ukuran minimum */}
-      <div className=" w-[1123px] h-[794px]">
-        {/* Certificate container dengan ukuran tetap */}
-        <div className="bg-white relative w-[1123px] h-[794px] flex items-center justify-center">
-          <div className="flex flex-col justify-center mx-[20]">
-            {/* Header - Menyesuaikan tinggi */}
-            <div className="">
-              <CertificateHeader idSertifikat={idSertifikat} />
-            </div>
+    <div 
+      id="certificate-container"
+      className="w-[297mm] h-[210mm] bg-white"
+    >
+      <div 
+        className="relative w-full h-full bg-cover bg-center bg-no-repeat p-10"
+        style={{
+          backgroundImage: "url('/bg-sertifikat.svg')"
+        }}
+      >
+        <div className="absolute top-8 right-5">
+          <CertificateQr idSertifikat={idSertifikat} size={80} />
+        </div>
 
-            <div className="flex items-center justify-center">
-              <CertificateContent
-                namaPeserta={namaPeserta}
-                namaKegiatan={namaKegiatan}
-                tema={tema}
-                tanggal={tanggal}
-                jenisSertifikat={jenisSertifikat}
-              />
-            </div>
-
-            {/* Footer - Menyesuaikan tinggi */}
-            <div>
-              <CertificateSignature />
-            </div>
-            <div>
-              <CertificateFooter />
-            </div>
-          </div>
+        <div className="flex flex-col space-y-8">
+          <CertificateLogo />
+          
+          <CertificateHeader idSertifikat={idSertifikat} />
+          
+          <CertificateContent
+            namaPeserta={namaPeserta}
+            namaKegiatan={namaKegiatan}
+            tema={tema}
+            tanggal={tanggal}
+            jenisSertifikat={jenisSertifikat}
+          />
+          
+          <CertificateSignature />
+          
+          <CertificateFooter />
         </div>
       </div>
     </div>

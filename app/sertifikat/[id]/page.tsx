@@ -2,6 +2,7 @@ import { getAbsen } from "@/libs/rest/notion/queries/getAbsen";
 import { Section, Container } from "@/components/commons/craft";
 import { CertificateImage } from "@/components/certificate/CertificateImage";
 import { ClientCertificateActions } from "@/components/certificate/ClientCertificateActions";
+import { CertificatePreview } from "@/components/certificate/CertificatePreview";
 
 export const revalidate = 3600;
 
@@ -50,29 +51,30 @@ const SertifikatDetailPage = async ({ params }: SertifikatDetailPageProps) => {
   return (
     <Section>
       <Container>
-        <div className="space-y-8">
+        <div>
           {/* Certificate Image */}
-          <div>
+          <div className="py-7">
             <CertificateImage data={sertifikat} />
           </div>
 
+          {/* Certificate Preview */}
+          <div className="flex justify-center py-7 hidden">
+            <CertificatePreview 
+              namaPeserta={sertifikat.nama}
+              namaKegiatan={sertifikat.namaKegiatan}
+              tema={sertifikat.tema}
+              tanggal={sertifikat.tanggal}
+              idSertifikat={sertifikat.idSertifikat}
+              jenisSertifikat={sertifikat.jenisSertifikat}
+            />
+          </div>
+
           {/* Download Actions */}
-          <div className="flex justify-center">
+          <div className="flex justify-center py-7">
             <ClientCertificateActions certificateId={id} />
           </div>
 
-          {/* Contact Information */}
-          <div className="flex flex-col items-center space-y-4">
-            <p className="text-sm text-muted-foreground text-center">
-              Untuk pertanyaan terkait sertifikat, silakan hubungi kami melalui{" "}
-              <a
-                href="mailto:ukm.penristek@gmail.com"
-                className="text-primary hover:underline"
-              >
-                ukm.penristek@gmail.com
-              </a>
-            </p>
-          </div>
+          
         </div>
       </Container>
     </Section>

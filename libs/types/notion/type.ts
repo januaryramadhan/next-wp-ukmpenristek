@@ -170,6 +170,7 @@ interface NotionAbsen {
 export interface FormattedAbsen {
   id: string;
   namaPeserta: string;
+  namaKegiatan: string; // Add this line
   tema: string;
   tanggal: string;
   idSertifikat: string;

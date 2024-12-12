@@ -2,9 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+import { jsPDF } from "jspdf";
 import { useState } from "react";
+import html2pdf from 'html2pdf.js';
 
 interface ClientCertificateActionsProps {
   certificateId: string;
@@ -22,26 +22,27 @@ export function ClientCertificateActions({ certificateId }: ClientCertificateAct
 
     try {
       setIsDownloading(true);
-      const canvas = await html2canvas(certificateElement, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: "#ffffff",
-        logging: false,
-      });
 
-      const imgWidth = 297; // A4 width in mm
-      const imgHeight = 210; // A4 height in mm
+      const opt = {
+        margin: 0,
+        filename: `sertifikat-${certificateId}.pdf`,
+        image: { type: 'auto' },
+        html2canvas: { 
+          scale: 2,
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: '#FFFFFF',
+          logging: false,
+        },
+        jsPDF: { 
+          unit: 'mm', 
+          format: 'a4', 
+          orientation: 'landscape',
+        }
+      };
 
-      const pdf = new jsPDF({
-        orientation: "landscape",
-        unit: "mm",
-        format: "a4",
-      });
+      await html2pdf().from(certificateElement).set(opt).save();
 
-      const imgData = canvas.toDataURL("image/jpeg", 1.0);
-      pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
-      pdf.save(`sertifikat-${certificateId}.pdf`);
     } catch (error) {
       console.error("Error generating PDF:", error);
       alert("Terjadi kesalahan saat mengunduh sertifikat");
@@ -58,7 +59,7 @@ export function ClientCertificateActions({ certificateId }: ClientCertificateAct
         disabled={isDownloading}
       >
         <Download size={16} />
-        {isDownloading ? "Mengunduh..." : "Unduh Sertifikat (PDF)"}
+        {isDownloading ? "Mengunduh..." : "Unduh Sertifikat (PDF)"} 
       </Button>
       <Button
         variant="outline"
