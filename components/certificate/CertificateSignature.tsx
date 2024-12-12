@@ -12,8 +12,8 @@ export function CertificateSignature() {
             fill
           />
         </div>
-        <p className="text-base font-semibold text-muted mt-2">Dian Nurjanah</p>
-        <p className="text-sm text-muted-foreground">Ketua UKM PENRISTEK</p>
+        <p className="text-[12px] text-gray-800 font-semibold text-muted mt-2">Dian Nurjanah</p>
+        <p className="text-[12px]  text-gray-500 ">Ketua UKM PENRISTEK</p>
       </div>
 
       <div className="text-center">
@@ -25,8 +25,8 @@ export function CertificateSignature() {
             fill
           />
         </div>
-        <p className="text-base font-semibold text-muted mt-2">M. Sohibul Wafa</p>
-        <p className="text-sm text-muted-foreground">Sekjen UKM PENRISTEK</p>
+        <p className="text-[12px]  text-gray-800 font-black font-semibold  mt-2">M. Sohibul Wafa</p>
+        <p className="text-[12px]  text-gray-500">Sekjen UKM PENRISTEK</p>
       </div>
     </div>
   );
