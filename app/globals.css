@@ -121,3 +121,20 @@
         opacity: 1;
     }
 }
+
+
+#certificate-container {
+    font-size: 16px;
+  }
+  
+  @media (max-width: 768px) {
+    #certificate-container {
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #certificate-container {
+      font-size: 10px;
+    }
+  }

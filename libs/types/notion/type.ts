@@ -118,3 +118,67 @@ export interface FormattedProker {
   iconName: string;
   tempat: string;  // Tambahkan ini
 }
+
+interface NotionAbsen {
+  id: string;
+  properties: {
+    "Nama Peserta": {
+      title: [
+        {
+          text: {
+            content: string;
+          };
+        },
+      ];
+    };
+    "Tema": {
+      rich_text: [
+        {
+          text: {
+            content: string;
+          };
+        },
+      ];
+    };
+    "Tanggal": {
+      date: {
+        start: string;
+      };
+    };
+    "ID Sertifikat": {
+      rich_text: [
+        {
+          text: {
+            content: string;
+          };
+        },
+      ];
+    };
+    "Jenis Sertifikat": {
+      select: {
+        name: string;
+      };
+    };
+    "Status Kehadiran": {
+      select: {
+        name: "Hadir" | "Tidak Hadir" | "Pending";
+      };
+    };
+  };
+}
+
+export interface FormattedAbsen {
+  id: string;
+  namaPeserta: string;
+  tema: string;
+  tanggal: string;
+  idSertifikat: string;
+  jenisSertifikat: string;
+  statusKehadiran: string;
+}
+
+interface AbsenResponse {
+  data: FormattedAbsen[];
+  error?: string;
+}
+
