@@ -89,7 +89,7 @@ async function NewestPostContent() {
       query: GET_RECENT_POSTS,
       context: {
         fetchOptions: {
-          next: { revalidate: 300 } // 5 minutes
+          next: { revalidate: 60 } // 5 minutes
         }
       }
     });

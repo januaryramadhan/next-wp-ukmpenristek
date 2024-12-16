@@ -17,7 +17,7 @@ interface Props {
 }
 
 // Using static value for revalidation
-export const revalidate = 7200; // 5 minutes
+export const revalidate = 60; // 5 minutes
 
 // Loading component
 function PostLoading() {

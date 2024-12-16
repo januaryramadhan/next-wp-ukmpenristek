@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 };
 
 // Use static value for revalidation
-export const revalidate = 7200; // 5 minutes
+export const revalidate = 60; // 5 minutes
 
 // Loading component
 function PostsLoading() {
