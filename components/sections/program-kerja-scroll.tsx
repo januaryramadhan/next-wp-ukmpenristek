@@ -19,7 +19,7 @@ export function ProgramKerjaScroll() {
             </h1>
             
             <a 
-              href="https://ukmpenristek.notion.site/Program-Kerja-UKM-10515417c02e80a4a9b8ef9166a54623?pvs=74" 
+              href="https://ukmpenristek.notion.site/Program-Kerja-UKM-10515417c02e80a4a9b8ef9166a54623" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center px-6 py-3 mt-4 text-base font-medium text-white bg-black rounded-lg hover:bg-gray-800 transition-colors duration-200"
