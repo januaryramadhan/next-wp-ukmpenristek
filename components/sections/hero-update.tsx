@@ -11,11 +11,11 @@ export function HeroUpdate() {
           <div className="space-y-8 text-center md:text-left order-2 md:order-1">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-                Selamat Menjalani UAS UT 2024.2
+                Sosialiasi & Rapat Umum UKM PENRSITEK 2024-2025
               </h1>
               
               <p className="text-lg text-muted-foreground">
-                Semangat menghadapi Ujian Akhir Semester di Universitas Terbuka
+                Kenal lebih dekat BPH dan Program Kerja UKM PENRISTEK
               </p>
             </div>
 
@@ -23,15 +23,15 @@ export function HeroUpdate() {
             <ul className="space-y-3 text-base md:text-lg text-muted-foreground">
               <li className="flex items-center space-x-2 md:space-x-3 justify-center md:justify-start">
                 <span className="text-primary">✓</span>
-                <span>Persiapkan diri dengan baik</span>
+                <span>Perkenalan Pengurus</span>
               </li>
               <li className="flex items-center space-x-2 md:space-x-3 justify-center md:justify-start">
                 <span className="text-primary">✓</span>
-                <span>Jaga kesehatan fisik dan mental</span>
+                <span>Pemaparan Program Kerja</span>
               </li>
               <li className="flex items-center space-x-2 md:space-x-3 justify-center md:justify-start">
                 <span className="text-primary">✓</span>
-                <span>Tetap fokus dan optimis</span>
+                <span>Rapat Umum</span>
               </li>
             </ul>
 
@@ -42,11 +42,11 @@ export function HeroUpdate() {
                 className="md:w-auto"
               >
                 <a 
-                  href="https://www.ut.ac.id"
+                  href="https://tally.so/r/wd2Bzz"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Info Selengkapnya
+                  Link Presensi
                 </a>
               </Button>
             </div>
@@ -55,7 +55,7 @@ export function HeroUpdate() {
           <div className="relative aspect-[9/16] md:aspect-square w-full max-w-[300px] mx-auto md:max-w-none order-1 md:order-2">
             <Iphone15Pro
               className="w-full h-full object-contain"
-              src="https://bisque-duck-758265.hostingersite.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-13-at-23.45.32.jpeg"
+              src="https://bisque-duck-758265.hostingersite.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-19-at-18.47.11.jpeg"
             />
           </div>
         </div>
